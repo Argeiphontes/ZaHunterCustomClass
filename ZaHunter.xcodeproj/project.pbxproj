@@ -81,13 +81,10 @@
 		81C89E0019EF031D003EAE1A /* ZaHunter */ = {
 			isa = PBXGroup;
 			children = (
-				81C89E0519EF031D003EAE1A /* AppDelegate.h */,
-				81C89E0619EF031D003EAE1A /* AppDelegate.m */,
+				81C89E0B19EF031D003EAE1A /* Main.storyboard */,
 				81C89E0819EF031D003EAE1A /* ViewController.h */,
 				81C89E0919EF031D003EAE1A /* ViewController.m */,
-				81C89E0B19EF031D003EAE1A /* Main.storyboard */,
 				81C89E0E19EF031D003EAE1A /* Images.xcassets */,
-				81C89E1019EF031D003EAE1A /* LaunchScreen.xib */,
 				81C89E0119EF031D003EAE1A /* Supporting Files */,
 			);
 			path = ZaHunter;
@@ -96,6 +93,9 @@
 		81C89E0119EF031D003EAE1A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				81C89E1019EF031D003EAE1A /* LaunchScreen.xib */,
+				81C89E0519EF031D003EAE1A /* AppDelegate.h */,
+				81C89E0619EF031D003EAE1A /* AppDelegate.m */,
 				81C89E0219EF031D003EAE1A /* Info.plist */,
 				81C89E0319EF031D003EAE1A /* main.m */,
 			);
