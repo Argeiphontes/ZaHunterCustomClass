@@ -16,6 +16,7 @@
 		81C89E1E19EF031D003EAE1A /* ZaHunterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C89E1D19EF031D003EAE1A /* ZaHunterTests.m */; };
 		81C89E2B19EF1698003EAE1A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C89E2A19EF1698003EAE1A /* CoreLocation.framework */; };
 		81C89E2D19EF16A3003EAE1A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C89E2C19EF16A3003EAE1A /* MapKit.framework */; };
+		81C89E3019EF1A14003EAE1A /* Pizzeria.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C89E2F19EF1A14003EAE1A /* Pizzeria.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,8 @@
 		81C89E1D19EF031D003EAE1A /* ZaHunterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZaHunterTests.m; sourceTree = "<group>"; };
 		81C89E2A19EF1698003EAE1A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		81C89E2C19EF16A3003EAE1A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		81C89E2E19EF1A14003EAE1A /* Pizzeria.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pizzeria.h; path = ../Pizzeria.h; sourceTree = "<group>"; };
+		81C89E2F19EF1A14003EAE1A /* Pizzeria.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Pizzeria.m; path = ../Pizzeria.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				81C89E0B19EF031D003EAE1A /* Main.storyboard */,
+				81C89E2E19EF1A14003EAE1A /* Pizzeria.h */,
+				81C89E2F19EF1A14003EAE1A /* Pizzeria.m */,
 				81C89E0819EF031D003EAE1A /* ViewController.h */,
 				81C89E0919EF031D003EAE1A /* ViewController.m */,
 				81C89E0E19EF031D003EAE1A /* Images.xcassets */,
@@ -230,6 +235,7 @@
 				81C89E0A19EF031D003EAE1A /* ViewController.m in Sources */,
 				81C89E0719EF031D003EAE1A /* AppDelegate.m in Sources */,
 				81C89E0419EF031D003EAE1A /* main.m in Sources */,
+				81C89E3019EF1A14003EAE1A /* Pizzeria.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
