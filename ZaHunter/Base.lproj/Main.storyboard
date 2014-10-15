@@ -28,6 +28,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="Lxj-Iy-d5A"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="Dwf-c7-UgG"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -38,7 +42,16 @@
                             <constraint firstItem="Rpt-Vf-PmI" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="cYw-eE-5gt"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="EeX-jm-eOo"/>
+                    <navigationItem key="navigationItem" id="EeX-jm-eOo">
+                        <barButtonItem key="rightBarButtonItem" title="Hunt Za!" id="oF3-rL-kyg">
+                            <connections>
+                                <action selector="huntZaButtonPressed:" destination="vXZ-lx-hvc" id="dTu-wr-SQp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="Rpt-Vf-PmI" id="DzN-Q9-9bS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

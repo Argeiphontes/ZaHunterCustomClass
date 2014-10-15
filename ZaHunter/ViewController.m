@@ -7,8 +7,12 @@
 //
 
 #import "ViewController.h"
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface ViewController ()
+@interface ViewController () <CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate>
+
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -19,9 +23,20 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [UITableViewCell new];
+    return cell;
+}
+
+- (IBAction)huntZaButtonPressed:(id)sender
+{
+
 }
 
 @end
