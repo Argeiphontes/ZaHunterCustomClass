@@ -51,8 +51,10 @@
         CLLocation *myCurrentLocation = self.myLocation;
         CLLocation *pizzeriaLocation = pizzeria.placemark.location;
         CLLocationDistance distance = [pizzeriaLocation distanceFromLocation: myCurrentLocation];
+        NSLog(@"Distance is %f", distance);
+        distance = distance / 1000;
         NSString *distanceFromMe = [self.numberFormatter stringFromNumber:@(distance)];
-        distanceFromMe = [distanceFromMe stringByAppendingString:@" meters"];
+        distanceFromMe = [distanceFromMe stringByAppendingString:@" kilometers"];
 //         = [NSString stringWithFormat:@"%.20f", distance];
         cell.textLabel.text = pizzeria.name;
         cell.detailTextLabel.text = distanceFromMe;
@@ -86,7 +88,7 @@
 {
     MKLocalSearchRequest *request = [MKLocalSearchRequest new];
     request.naturalLanguageQuery = @"pizza";
-    request.region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(5, 5));
+    request.region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(3, 3));
     MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
     [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
         self.pizzerias = response.mapItems;
