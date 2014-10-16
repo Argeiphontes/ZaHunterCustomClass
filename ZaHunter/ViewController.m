@@ -15,7 +15,9 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property CLLocationManager *myLocationManager;
-@property NSMutableArray *pizzerias;
+@property NSArray *pizzerias;
+@property CLLocation *myLocation;
+@property NSNumberFormatter *numberFormatter;
 
 @end
 
@@ -27,6 +29,9 @@
     self.myLocationManager = [[CLLocationManager alloc]init];
     [self.myLocationManager requestWhenInUseAuthorization];
     self.myLocationManager.delegate = self;
+    self.numberFormatter = [[NSNumberFormatter alloc] init];
+    [self.numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [self.numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -40,9 +45,17 @@
     if (self.pizzerias.count) {
 
         MKMapItem *pizzeria = [self.pizzerias objectAtIndex:indexPath.row];
+
         // If pizzeria distance is within range show it. We want it closer than 6.21371 miles or 10 kilometers
+
+        CLLocation *myCurrentLocation = self.myLocation;
+        CLLocation *pizzeriaLocation = pizzeria.placemark.location;
+        CLLocationDistance distance = [pizzeriaLocation distanceFromLocation: myCurrentLocation];
+        NSString *distanceFromMe = [self.numberFormatter stringFromNumber:@(distance)];
+        distanceFromMe = [distanceFromMe stringByAppendingString:@" meters"];
+//         = [NSString stringWithFormat:@"%.20f", distance];
         cell.textLabel.text = pizzeria.name;
-//        cell.detailTextLabel.text = pizzeria.distanceFromCurrentLocationInMilesString;
+        cell.detailTextLabel.text = distanceFromMe;
     }
         return cell;
 }
@@ -59,6 +72,7 @@
     for (CLLocation *location in locations) {
         if (location.verticalAccuracy < 1000 && location.horizontalAccuracy < 1000) {
             [self findPizzaNearby: location];
+            self.myLocation = location;
             NSLog(@"The Location is %@", location);
             [self.myLocationManager stopUpdatingLocation];
             break;
@@ -75,11 +89,8 @@
     request.region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(5, 5));
     MKLocalSearch *search = [[MKLocalSearch alloc]initWithRequest:request];
     [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
-        NSArray *mapItems = response.mapItems;
-        [self.pizzerias addObjectsFromArray:mapItems];
-        NSLog(@"Map Items: %@ ", mapItems);
+        self.pizzerias = response.mapItems;
         [self.tableView reloadData];
-
     }];
 }
 
