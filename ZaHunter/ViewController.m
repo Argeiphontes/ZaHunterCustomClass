@@ -46,6 +46,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     Pizzeria *pizzeria = [self.pizzeriaArray objectAtIndex:indexPath.row];
     cell.textLabel.text = pizzeria.mapItem.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%f", pizzeria.distanceFromMe ];
 
 //        cell.detailTextLabel.text = pizzeria.distanceFromMe;
 
@@ -54,7 +55,6 @@
 //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
 //    cell.textLabel.text = [self.pizzeriaArray objectAtIndex:indexPath.row];
 
-    return cell;
 }
 
 - (IBAction)huntZaButtonPressed:(id)sender
@@ -80,7 +80,7 @@
     }
 }
 
-// find pizza locations   input: MKLocalSearchRequest  Output: mapItems assigned to array
+// find pizza locations   input: MKLocalSearchRequest  Output: mapItems made into Pizzeria objects and assigned to array
 -(void) findPizzaNearby: (CLLocation *) location
 {
 
@@ -93,8 +93,11 @@
         for (MKMapItem *mapItem in response.mapItems) {
             Pizzeria *pizzeria = [Pizzeria new];
             pizzeria.mapItem = mapItem;
+            // calculate distanceFromMe, route, and add ratings
+            pizzeria.distanceFromMe = [self calculatePizzeriaDistances: pizzeria];
 
             [self.pizzeriaArray addObject:pizzeria];
+
         }
         [self.tableView reloadData];
     }];
@@ -104,25 +107,23 @@
 #pragma - Helper Methods
 
 // calculate & sort distance of pizzerias from User (ascending)  input: locations  output: distances
-- (void) calculatePizzeriaDistances
+- (CLLocationDistance) calculatePizzeriaDistances: (Pizzeria *) pizzeria
 {
-    if (self.pizzeriaArray.count) {
-
 
         // If pizzeria distance is within range show it. We want it closer than 6.21371 miles or 10 kilometers
 
-        Pizzeria *pizzeria = [Pizzeria new];
+//        Pizzeria *pizzeria = [Pizzeria new];
 
+    CLLocation *myCurrentLocation = self.myLocation;
+    CLLocation *pizzeriaLocation = pizzeria.mapItem.placemark.location;
+    CLLocationDistance distance = [pizzeriaLocation distanceFromLocation: myCurrentLocation];
+    NSLog(@"Distance is %f", distance);
+    distance = distance / 1000;
+//    NSString *distanceFromMe = [self.numberFormatter stringFromNumber:@(distance)];
+//    distanceFromMe = [distanceFromMe stringByAppendingString:@" kilometers"];
+    //         = [NSString stringWithFormat:@"%.20f", distance];
 
-        CLLocation *myCurrentLocation = self.myLocation;
-        CLLocation *pizzeriaLocation = pizzeria.mapItem.placemark.location;
-        CLLocationDistance distance = [pizzeriaLocation distanceFromLocation: myCurrentLocation];
-        NSLog(@"Distance is %f", distance);
-        distance = distance / 1000;
-        NSString *distanceFromMe = [self.numberFormatter stringFromNumber:@(distance)];
-        distanceFromMe = [distanceFromMe stringByAppendingString:@" kilometers"];
-        //         = [NSString stringWithFormat:@"%.20f", distance];
-    }
+    return distance;
 
 }
 

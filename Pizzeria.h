@@ -11,7 +11,7 @@
 
 @interface Pizzeria : NSObject
 @property MKMapItem *mapItem;
-@property float distanceFromMe;
+@property CLLocationDistance distanceFromMe;
 @property MKRoute *route;
 @property NSInteger rating;
 
