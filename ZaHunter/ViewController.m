@@ -46,9 +46,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     Pizzeria *pizzeria = [self.pizzeriaArray objectAtIndex:indexPath.row];
     cell.textLabel.text = pizzeria.mapItem.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%f", pizzeria.distanceFromMe ];
+    cell.detailTextLabel.text = pizzeria.distanceFromMeInKM;
 
 //        cell.detailTextLabel.text = pizzeria.distanceFromMe;
+
 
         return cell;
 
@@ -94,8 +95,12 @@
             Pizzeria *pizzeria = [Pizzeria new];
             pizzeria.mapItem = mapItem;
             // calculate distanceFromMe, route, and add ratings
-            pizzeria.distanceFromMe = [self calculatePizzeriaDistances: pizzeria];
+            pizzeria.distanceFromMe = [self calculatePizzeriaDistances: pizzeria];  // Study this connection.
+            pizzeria.distanceFromMeInKM = [NSString stringWithFormat:@"%.02f km", pizzeria.distanceFromMe];
 
+
+// NSString* myNewString = [NSString stringWithFormat:@"%d", myInt];
+            // NSString* formattedNumber = [NSString stringWithFormat:@"%.02f", myFloat];
             [self.pizzeriaArray addObject:pizzeria];
 
         }
@@ -119,8 +124,9 @@
     CLLocationDistance distance = [pizzeriaLocation distanceFromLocation: myCurrentLocation];
     NSLog(@"Distance is %f", distance);
     distance = distance / 1000;
-//    NSString *distanceFromMe = [self.numberFormatter stringFromNumber:@(distance)];
-//    distanceFromMe = [distanceFromMe stringByAppendingString:@" kilometers"];
+    NSString *distanceWhenFormatted = [self.numberFormatter stringFromNumber:@(distance)];
+    distanceWhenFormatted = [distanceWhenFormatted stringByAppendingString:@" kilometers"];
+
     //         = [NSString stringWithFormat:@"%.20f", distance];
 
     return distance;

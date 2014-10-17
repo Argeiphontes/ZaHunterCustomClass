@@ -12,6 +12,7 @@
 @interface Pizzeria : NSObject
 @property MKMapItem *mapItem;
 @property CLLocationDistance distanceFromMe;
+@property NSString *distanceFromMeInKM;
 @property MKRoute *route;
 @property NSInteger rating;
 
