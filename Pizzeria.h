@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
 @interface Pizzeria : NSObject
+@property MKMapItem *mapItem;
+@property float distanceFromMe;
+@property MKRoute *route;
+@property NSInteger rating;
 
 @end
