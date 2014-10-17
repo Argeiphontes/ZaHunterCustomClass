@@ -9,5 +9,15 @@
 #import "Pizzeria.h"
 
 @implementation Pizzeria
+-(instancetype)initWithMapItem: (MKMapItem *) passedInMapItem distanceFromMe: (CLLocationDistance)passedInDistanceFromMe distanceFromMeInKM: (NSString *) passedInDistanceFromMeInKM
+{
+    self = [super init];
+    if (self) {
+        self.mapItem = passedInMapItem;
+        self.distanceFromMe = passedInDistanceFromMe;
+        self.distanceFromMeInKM = passedInDistanceFromMeInKM;
+    }
+    return self;
+}
 
 @end

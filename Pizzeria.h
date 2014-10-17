@@ -16,4 +16,6 @@
 @property MKRoute *route;
 @property NSInteger rating;
 
+-(instancetype)initWithMapItem: (MKMapItem *) passedInMapItem distanceFromMe: (CLLocationDistance)passedInDistanceFromMe distanceFromMeInKM: (NSString *) passedInDistanceFromMeInKM;
+
 @end

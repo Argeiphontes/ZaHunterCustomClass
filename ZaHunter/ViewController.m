@@ -92,12 +92,12 @@
     [search startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
 
         for (MKMapItem *mapItem in response.mapItems) {
-            Pizzeria *pizzeria = [Pizzeria new];
-            pizzeria.mapItem = mapItem;
-            // calculate distanceFromMe, route, and add ratings
-            pizzeria.distanceFromMe = [self calculatePizzeriaDistances: pizzeria];  // Study this connection.
-            pizzeria.distanceFromMeInKM = [NSString stringWithFormat:@"%.02f km", pizzeria.distanceFromMe];
-
+            Pizzeria *pizzeria = [[Pizzeria alloc]initWithMapItem:mapItem distanceFromMe: [self calculatePizzeriaDistances: pizzeria] distanceFromMeInKM:[NSString stringWithFormat:@"%.02f km", [self calculatePizzeriaDistances: pizzeria]]];
+//            pizzeria.mapItem = mapItem;
+//            // calculate distanceFromMe, route, and add ratings
+//            pizzeria.distanceFromMe = [self calculatePizzeriaDistances: pizzeria];  // Study this connection.
+//            pizzeria.distanceFromMeInKM = [NSString stringWithFormat:@"%.02f km", pizzeria.distanceFromMe];
+//
 
 // NSString* myNewString = [NSString stringWithFormat:@"%d", myInt];
             // NSString* formattedNumber = [NSString stringWithFormat:@"%.02f", myFloat];
@@ -106,12 +106,13 @@
         }
         [self.tableView reloadData];
     }];
+    [self sortPizzeriaDistances: self.pizzeriaArray];
 }
 
 
 #pragma - Helper Methods
 
-// calculate & sort distance of pizzerias from User (ascending)  input: locations  output: distances
+// calculate distance of pizzerias from User (ascending)  input: locations  output: distances
 - (CLLocationDistance) calculatePizzeriaDistances: (Pizzeria *) pizzeria
 {
 
@@ -131,6 +132,31 @@
 
     return distance;
 
+}
+
+// sort pizzeria distances
+- (NSMutableArray *) sortPizzeriaDistances: (NSMutableArray *) pizzeriaArray
+{
+    NSMutableArray *projectArray = [NSMutableArray arrayWithArray:self.pizzeriaArray];
+    for (TimeProjects *project  in projectArray) {
+        CLLocationDistance *kilometers = pizzeria.
+
+        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:self.pizzeriaArray ascending:YES]
+        }]
+    }
+
+
+
+//    NSMutableArray *projectArray = ... // your mutable copy of the fetched objects
+//    for (TimeProjects *project in projectArray) {
+//        CLLocationDegrees lat = [project.houseLat doubleValue];
+//        CLLocationDegrees lng = [project.houseLng doubleValue];
+//        CLLocation *houseLocation = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
+//        CLLocationDistance meters = [houseLocation distanceFromLocation:currentLocation];
+//        project.currentDistance = @(meters);
+//    }
+//    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"currentDistance" ascending:YES]
+//    [projectArray sortUsingDescriptors:@[sort]];
 }
 
 // view pizzerias in MapView
